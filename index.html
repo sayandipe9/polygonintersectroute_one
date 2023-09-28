@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Routing Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.3.0/turf.min.js"></script>
+</head>
+<body>
+    <!-- Your form goes here -->
+    <form id="routing-form">
+        <label for="start">Start Point:</label>
+        <input type="text" id="start" />
+        <br />
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" />
+        <br />
+        <button type="submit">Get Directions</button>
+    </form>
+    
+    <!-- Map container -->
+    <div id="map" style="height: 500px;"></div>
+<div style="display: flex;justify-content: center;">
+    <button id="createPolygonButton">Create Polygon</button>
+    <button id="removePolygonButton">Remove Polygon</button>
+</div>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.3.0/turf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+<style>
+    /* Style the form container */
+    #routing-form {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Style the labels */
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    /* Style the text inputs */
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+    }
+
+    /* Style the submit button */
+    button[type="submit"] {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    /* Change button color on hover */
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+      
+    /* Style the "Create Polygon" button */
+    #createPolygonButton {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    /* Change button color on hover */
+    #createPolygonButton:hover {
+        background-color: #45a049;
+    }
+
+    #removePolygonButton {
+        background-color: #FF0000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    /* Change button color on hover */
+    #removePolygonButton:hover {
+        background-color: #b30000;
+    }
+</style>
+</html>
