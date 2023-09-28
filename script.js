@@ -190,11 +190,26 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("intersection points");
         console.log(intersectionPoints);
         let intersectionPointsArray = intersectionPoints.features.map(d => { return d.geometry.coordinates });
-        L.geoJSON(intersectionPoints).addTo(map);
+        // L.geoJSON(intersectionPoints).addTo(map);
 
+        var redIcon = L.icon({
+            iconUrl: 'red_marker.png', // Replace with the URL of your red marker icon
+            iconSize: [25, 41], // Adjust the icon size as needed
+            iconAnchor: [12, 41], // Adjust the anchor point if necessary
+            popupAnchor: [1, -34] // Adjust the popup anchor if necessary
+        });
+        
+        L.geoJSON(intersectionPoints, {
+            pointToLayer: function (feature, latlng) {
+                return L.marker(latlng, { icon: redIcon });
+            }
+        }).addTo(map);
 
-
-        let intersection = turf.lineSlice(turf.point(intersectionPointsArray[0]), turf.point(intersectionPointsArray[1]), routeLineString);
+         console.log(intersectionPointsArray);
+         console.log("intersectiopointarray");
+  
+        // let intersection = turf.lineSlice(turf.point(intersectionPointsArray[0]), turf.point(intersectionPointsArray[1]), routeLineString);
+        // let intersection2 = turf.lineSlice(turf.point(intersectionPointsArray[2]), turf.point(intersectionPointsArray[3]), routeLineString);
 
         var lineStyle = {
             "color": "#7F00FF",
@@ -203,12 +218,33 @@ document.addEventListener("DOMContentLoaded", function () {
             "zIndex": 100
         };
 
-        L.geoJSON(intersection, {
-            style: lineStyle
-        }).addTo(map);
-        // var lineLayer = L.geoJSON(line, {
+
+
+        for (var i = 0; i < intersectionPointsArray.length; i=i+2) {
+            // var pair = intersectionPairs[i];
+            var intersection = turf.lineSlice(turf.point(intersectionPointsArray[i]), turf.point(intersectionPointsArray[i+1]), routeLineString);
+            
+            L.geoJSON(intersection, {
+                style: lineStyle
+            }).addTo(map);
+        }
+     
+        
+        
+        
+        
+        
+        
+
+        // L.geoJSON(intersection, {
         //     style: lineStyle
         // }).addTo(map);
+        
+
+        // L.geoJSON(intersection2, {
+        //     style: lineStyle
+        // }).addTo(map);
+        
 
 
         for (const coordinate of routeLineString.geometry.coordinates) {
